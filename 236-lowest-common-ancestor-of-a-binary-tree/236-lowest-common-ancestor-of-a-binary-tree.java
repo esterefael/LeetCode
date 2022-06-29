@@ -21,17 +21,22 @@ class Solution {
     //     if(left && right || left && flag || right && flag) commonAncestor = root;
     //     return left || right || flag;
     // }
-    public TreeNode commonAncestor = null;
+     public TreeNode ancestor=null;
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        findLowestCommonAncestor(root, p, q);
-        return commonAncestor;
+        findLowestCommonAncestor(root,p,q);
+        return ancestor;
     }
     public boolean findLowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if(root == null) return false;
-        Boolean flag = root == p || root == q;
-        Boolean left = findLowestCommonAncestor(root.left, p, q);
-        Boolean right = findLowestCommonAncestor(root.right, p, q);
-        if(left && right || left && flag || right && flag) commonAncestor = root;
-        return left || right || flag;
+        if(root==null) return false;
+        Boolean flag=root==p || root==q;
+        Boolean l=findLowestCommonAncestor(root.left,p,q);
+        Boolean r=findLowestCommonAncestor(root.right,p,q);
+        if(l && r || l && flag || r && flag)
+        {
+            ancestor=root;
+        }
+        return l|| r ||flag;
+
     }
+
 }
