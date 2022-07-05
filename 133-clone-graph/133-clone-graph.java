@@ -18,21 +18,19 @@ class Node {
 }
 */
 
+import java.util.HashMap;
 class Solution {
-    
-    Node[] visited = new Node[101];
-    
+    HashMap<Integer, Node> hm = new HashMap<>();
     public Node cloneGraph(Node node) {
-        
         if(node == null)return null;
-        if(visited[node.val] != null)return visited[node.val];
-        
+        if(hm.containsKey(node.val)){
+            return hm.get(node.val);
+        }
         Node root = new Node(node.val);
-        visited[node.val] = root;
+        hm.put(node.val,root);
         for(Node n:node.neighbors){
             root.neighbors.add(cloneGraph(n));
         }
-        
         return root;
     }
 }
