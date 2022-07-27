@@ -20,5 +20,5 @@ class Solution {
             cur.remove(cur.size() - 1);            
         }
     
-    }
+    }    
 }
