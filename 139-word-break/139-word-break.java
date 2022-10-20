@@ -2,27 +2,27 @@ class Solution {
     
     // memoziation
     
-    // String s;
-    // Set<String> wordDict;
-    // boolean[] visited;
-    // public boolean wordBreak(String s, List<String> wordDict) {
-    //     this.s = s;
-    //     this.wordDict = new HashSet<>(wordDict);
-    //     this.visited = new boolean[s.length()];
-    //     return wordBreak(0);
-    // }
-    // public boolean wordBreak(int start) {
-    //     if(start == s.length())
-    //         return true;
-    //     if(visited[start])
-    //         return false;
-    //     visited[start] = true;
-    //     for(int end = start + 1; end <= s.length(); end++){
-    //         if(wordDict.contains(s.substring(start, end)) && wordBreak(end))
-    //              return true;
-    //     }
-    //     return false;
-    // }
+    String s;
+    Set<String> wordDict;
+    boolean[] visited;
+    public boolean wordBreak(String s, List<String> wordDict) {
+        this.s = s;
+        this.wordDict = new HashSet<>(wordDict);
+        this.visited = new boolean[s.length()];
+        return wordBreak(0);
+    }
+    public boolean wordBreak(int start) {
+        if(start == s.length())
+            return true;
+        if(visited[start])
+            return false;
+        visited[start] = true;
+        for(int end = start + 1; end <= s.length(); end++){
+            if(wordDict.contains(s.substring(start, end)) && wordBreak(end))
+                 return true;
+        }
+        return false;
+    }
     
     //dp O(N ^ 4)
     
@@ -41,19 +41,19 @@ class Solution {
     //     return dp[0][s.length() - 1];
     // }
     
-    //dp O(N ^ 3)
+//     //dp O(N ^ 3)
     
-        public boolean wordBreak(String s, List<String> wordDict) {        
-        Set<String> wordDictSet = new HashSet<>(wordDict);
-        boolean[]dp = new boolean[s.length() + 1];
-        dp[0] = true;
-        for(int end = 1; end <= s.length(); end++){
-            for(int partition = 0; partition < s.length() && !dp[end]; partition++)
-                if(dp[partition] && wordDictSet.contains(s.substring(partition, end)))
-                    dp[end] = true;            
-        }
-        return dp[s.length()];
-    }
+//         public boolean wordBreak(String s, List<String> wordDict) {        
+//         Set<String> wordDictSet = new HashSet<>(wordDict);
+//         boolean[]dp = new boolean[s.length() + 1];
+//         dp[0] = true;
+//         for(int end = 1; end <= s.length(); end++){
+//             for(int partition = 0; partition < s.length() && !dp[end]; partition++)
+//                 if(dp[partition] && wordDictSet.contains(s.substring(partition, end)))
+//                     dp[end] = true;            
+//         }
+//         return dp[s.length()];
+//     }
     
     //bfs
     
